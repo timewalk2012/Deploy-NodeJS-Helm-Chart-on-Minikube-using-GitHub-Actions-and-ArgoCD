@@ -26,7 +26,7 @@ jobs:
         run: docker build -t uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push Docker image
-        run: docker push uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+        run: docker push uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Update values.yaml
         run: |
