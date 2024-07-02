@@ -8,7 +8,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 env:
-  APP_VERSION: 92289afad0fa02270e17
+  APP_VERSION: d1172396c97d459888fb
 
 serviceAccount:
   create: true
