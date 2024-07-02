@@ -26,7 +26,7 @@ jobs:
       - name: Update values.yaml
         run: |
           cd nodeapp
-          sed -i 's|APP_VERSION:.*|APP_VERSION: ${{ env.SHA }}|' values.yaml 
+          sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ env.SHA }}'|' values.yaml 
           git config --global user.name 'timewalk2012'
           git config --global user.email 'timewalk2012@163.com'
           git add values.yaml
