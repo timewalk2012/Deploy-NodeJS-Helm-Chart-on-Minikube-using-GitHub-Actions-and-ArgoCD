@@ -26,7 +26,7 @@ jobs:
       - name: Update values.yaml
         run: |
           cd nodeapp
-          sha: echo ${{ github.sha }} | rev | cut -c1-20 | rev
+          sha=$(echo ${{ github.sha }} | rev | cut -c1-20 | rev)
           sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ sha }}'|' values.yaml 
           git config --global user.name 'timewalk2012'
           git config --global user.email 'timewalk2012@163.com'
