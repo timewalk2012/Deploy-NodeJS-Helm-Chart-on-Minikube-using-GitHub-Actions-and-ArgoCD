@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: devopshint/node-app
+  repository: uhub.service.ucloud.cn/timewalk/node-app
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 nameOverride: ""
