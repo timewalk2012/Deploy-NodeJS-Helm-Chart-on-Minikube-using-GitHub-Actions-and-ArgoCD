@@ -13,20 +13,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: cut githubSha
+        run: |
+          sha=$(echo ${{ github.sha }} | rev | cut -c1-20 | rev)
       - name: Login to UCloud UHub
         run: docker login uhub.service.ucloud.cn -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+        run: docker build -t uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${sha} .
 
       - name: Push Docker image
-        run: docker push uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        run: docker push uhub.service.ucloud.cn/timewalk/${{ env.IMAGE_NAME }}:${sha}
 
       - name: Update values.yaml
         run: |
           cd nodeapp
-          sha=$(echo ${{ github.sha }} | rev | cut -c1-20 | rev)
           sed -i 's|APP_VERSION:.*|APP_VERSION: ${sha}|' values.yaml 
           git config --global user.name 'timewalk2012'
           git config --global user.email 'timewalk2012@163.com'
